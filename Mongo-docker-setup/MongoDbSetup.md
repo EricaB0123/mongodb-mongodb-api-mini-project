@@ -9,7 +9,10 @@
 
 ## What this means
 - The MongoDB container is configured and can be started with: docker compose up -d
+- The Visual Studio Code editor should now connect via bash or mongodb extension.
 
-![Alt text](./Screenshots/Connecting to Mongo Db in )
+### Example Below is using the MongoDB extension CMDline
+
+!<img width="972" height="917" alt="Connecting to Mongo DB in Docker" src="https://github.com/user-attachments/assets/572824ab-8aaa-4178-9486-11e99cc41f90" />
 
 
