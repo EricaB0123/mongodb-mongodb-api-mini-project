@@ -10,6 +10,6 @@ services:
       - mongo-data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: erica
-      MONGO_INITDB_ROOT_PASSWORD: secret123
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
 volumes:
   mongo-data:
