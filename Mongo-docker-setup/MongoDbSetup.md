@@ -1,21 +1,43 @@
 
+# Mongodb setup 
+
+## This section covers the Docker and MongoDB setup
+- running MongoDB in Docker
+- connecting to MongoDB
+- the database creation
+- collections and inserting documents
+- creating a simple index
+
+
 ## What is set up right now:
 
 - docker-compose.yml
 - defines a mongo service using mongo:latest
 - maps host port 27017 to container port 27017
 - mounts a named volume mongo-data to /data/db
-- reads MONGO_INITDB_ROOT_PASSWORD from an env variable  (this will updated later on to a more secure way of passwords)
+- reads MONGO_INITDB_ROOT_PASSWORD from an env variable  (this will updated later to a more secure way of passwords)
+
 
 ## What this means
 - The MongoDB container is configured and can be started with: docker compose up -d
 - The Visual Studio Code editor should now connect via bash or mongodb extension.
 
+### Connecting to Mongo via Visual Studio 
+
+1. Install the MongoDB extension
+2. Open the MongoDB panel
+3. Add a new connection string: mongodb://root:<your-password>@localhost:27017
+
+### Connecting to Docker Via Visual Studio
+
+docker compose up -d
+
+
 ### Example using the MongoDB extension via VisualStudioCode
 
 <img width="972" height="917" alt="Connecting to Mongo DB in Docker" src="https://github.com/user-attachments/assets/922bf7de-2875-4824-8d24-ed8616769db7" />
 
-### How  the Database get setup
+### Database get setup
 I created a Database called 'BasicDB' and created a collection called 'users'.
 Within Visual Studio i created 2 scripts the 'Database' creation and Basic 'CRUD' document. This crud document was a basic database insert.
 
@@ -27,7 +49,11 @@ I did this with the docker command within the terminal.
 
 <img width="1390" height="927" alt="image" src="https://github.com/user-attachments/assets/94c397b7-9633-47b8-beb3-493ee3574734" />
 
-###How do I connect to the Database and Check Data exists
+### connect to the Database and Check Data exists
+
+
+
+
 I used the Docker Terminal to connect via admin user and Query via the 'basicsDB'.
 The output was showing me the 3 'Documents'. 
 
