@@ -107,19 +107,13 @@ Sample documents
 [ ] Add GitHub Actions CI/CD
 
 ## What I Learned
-How MongoDB differs from SQL Server in schema design
+- How MongoDB differs from SQL Server in schema design
+- How Docker volumes persist database files
+- How to use the VS Code MongoDB extension for browsing collections
+- How to structure a small API project around MongoDB
+- The importance of separating local and cloud environments
+- How NoSQL thinking changes data modelling decisions
 
-How Docker volumes persist database files
 
-How to use the VS Code MongoDB extension for browsing collections
-
-How to structure a small API project around MongoDB
-
-The importance of separating local and cloud environments
-
-How NoSQL thinking changes data modelling decisions
-
-#About Me
+# About Me
 I’m Erica — a Senior Database Administrator transitioning into Data Platform Engineering, building modern data skills across SQL Server, PostgreSQL, Oracle, MongoDB, and AWS.
-
-
