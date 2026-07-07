@@ -27,6 +27,13 @@ I did this with the docker command within the terminal.
 
 <img width="1390" height="927" alt="image" src="https://github.com/user-attachments/assets/94c397b7-9633-47b8-beb3-493ee3574734" />
 
+###How do I connect to the Database and Check Data exists
+I used the Docker Terminal to connect via admin user and Query via the 'basicsDB'.
+The output was showing me the 3 'Documents'. 
+
+<img width="940" height="894" alt="image" src="https://github.com/user-attachments/assets/e4747f9d-c172-4d1a-ae16-aedbdaeacfb5" />
+
+
 
 
 
