@@ -1,44 +1,31 @@
-MongoDB Mini Project — Docker + API (In Progress)
+#MongoDB Mini Project — Docker + API (In Progress)
+
 A hands‑on mini‑project demonstrating how to run MongoDB in Docker, connect via VS Code, design collections, and (soon) expose CRUD and aggregation operations through a Node.js API. This project is part of my transition from Senior Database Administrator to Data Platform Engineer, showcasing modern data‑platform tooling, containerisation, and NoSQL fundamentals.
 
-🚀 Project Goals
-Build a containerised MongoDB environment using Docker
+##Project Goals
+-Build a containerised MongoDB environment using Docker
+-Connect and manage MongoDB using VS Code MongoDB extension
+-Design collections and insert sample documents
+-Implement CRUD operations via a Node.js API (in progress)
+-Demonstrate indexing and aggregation pipelines (planned)
+-Deploy a cloud version using MongoDB Atlas (planned)
 
-Connect and manage MongoDB using VS Code MongoDB extension
+##Tech Stack
+-MongoDB Community Edition (Docker container)
+-Docker Desktop
+-VS Code MongoDB Extension
+-Node.js + Express API (coming soon)
+-MongoDB Atlas (planned)
 
-Design collections and insert sample documents
+##Docker Setup
+-The project includes a full Docker setup for running MongoDB locally:
+-Pulling MongoDB image
+-Running container with mounted volume
+-Connecting via VS Code
+-Creating collections and inserting documents
+-See: Mongo-docker-setup/MongoDbSetup.md for detailed steps.
 
-Implement CRUD operations via a Node.js API (in progress)
-
-Demonstrate indexing and aggregation pipelines (planned)
-
-Deploy a cloud version using MongoDB Atlas (planned)
-
-🧱 Tech Stack
-MongoDB Community Edition (Docker container)
-
-Docker Desktop
-
-VS Code MongoDB Extension
-
-Node.js + Express API (coming soon)
-
-MongoDB Atlas (planned)
-
-🐳 Docker Setup
-The project includes a full Docker setup for running MongoDB locally:
-
-Pulling MongoDB image
-
-Running container with mounted volume
-
-Connecting via VS Code
-
-Creating collections and inserting documents
-
-See: Mongo-docker-setup/MongoDbSetup.md for detailed steps.
-
-📁 Project Structure
+##Project Structure
 Code
 mongodb-mongodb-api-mini-project/
 │
@@ -54,7 +41,8 @@ mongodb-mongodb-api-mini-project/
 ├── screenshots/        # Docker, VS Code, API examples
 │
 └── README.md
-🔌 API Endpoints (Coming Soon)
+
+##API Endpoints (Coming Soon)
 The API will expose the following:
 
 CRUD
@@ -80,68 +68,45 @@ Creating indexes
 
 Measuring performance differences
 
-🧪 Testing (Planned)
-Postman collection
+##Testing (Planned)
+-Postman collection
+-Automated tests using Jest
+-Example API calls
 
-Automated tests using Jest
+##Security Considerations
+-.env file for secrets
+-No credentials committed
+-Notes on production hardening
+-Planned: Atlas access rules + IP whitelisting
 
-Example API calls
+##MongoDB Atlas Version (Planned)
+-A cloud‑hosted version of the project will include:
+-Atlas cluster setup
+-Connection string configuration
+-Screenshots of cloud collections
+-Differences between local Docker vs Atlas
 
-🔐 Security Considerations
-.env file for secrets
-
-No credentials committed
-
-Notes on production hardening
-
-Planned: Atlas access rules + IP whitelisting
-
-☁️ MongoDB Atlas Version (Planned)
-A cloud‑hosted version of the project will include:
-
-Atlas cluster setup
-
-Connection string configuration
-
-Screenshots of cloud collections
-
-Differences between local Docker vs Atlas
-
-📸 Screenshots
+##Screenshots
 Screenshots include:
-
 Docker container running
-
 VS Code MongoDB extension
-
 Sample documents
-
 (Soon) API responses
-
 (Soon) Atlas dashboard
 
-🧭 Roadmap
+#Roadmap
 [x] Docker MongoDB setup
-
 [x] VS Code MongoDB connection
-
 [ ] Build Node.js API
-
 [ ] Add CRUD endpoints
-
 [ ] Add aggregation examples
-
 [ ] Add indexing examples
-
 [ ] Add MongoDB Atlas deployment
-
 [ ] Add Postman collection
-
 [ ] Add Jest tests
-
 [ ] Add GitHub Actions CI/CD
 
-📝 What I Learned
+##What I Learned
 How MongoDB differs from SQL Server in schema design
 
 How Docker volumes persist database files
@@ -154,11 +119,7 @@ The importance of separating local and cloud environments
 
 How NoSQL thinking changes data modelling decisions
 
-👋 About Me
+#About Me
 I’m Erica — a Senior Database Administrator transitioning into Data Platform Engineering, building modern data skills across SQL Server, PostgreSQL, Oracle, MongoDB, and AWS.
 
-This project is part of my learning path toward the AWS Data Engineer (DEC‑C01) certification.
-
-💬 Feedback Welcome
-If you’re a recruiter, engineer, or mentor, I’d love feedback on how to improve this project as I continue building it.
 
