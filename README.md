@@ -23,7 +23,7 @@ A hands‑on mini‑project demonstrating how to run MongoDB in Docker, connect 
 - Running container with mounted volume
 - Connecting via VS Code
 - Creating collections and inserting documents
-- See: Mongo- docker- setup/MongoDbSetup.md for detailed steps.
+- See: Mongo-docker-setup/MongoDbSetup.md for detailed steps.
 
 ## Project Structure
 Code
