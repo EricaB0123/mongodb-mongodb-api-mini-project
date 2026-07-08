@@ -200,6 +200,140 @@ basicsDB> db.users.find({ city: "Nelson" }).explain("executionStats")
 
 ```
 
+###### What the Query Plan is doing
+
+- The mention of 'COLLSCAN' suggests MongoDB did not use an index.
+- It scanned every document in the users collection.
+- It checked each document to see if city == "Nelson"
+- Normal when no Index exists
+
+   - It scanned 6 documents in the collection
+   - Out of the 6 it matched with 2
+   - It took 23 milliseconds
+   - For a larger dataset > 10,000 documents this may increase in time.
+   - For a small dataset may get away with no index for matching documents for 'city'.
+
+- Does it need an index?
+ 
+###### What the Query Plan is doing now - after creating an Index on 'city'
+
+```
+basicsDB> db.getCollection('users').createIndex({ city: 1 })
+city_1
+basicsDB> db.users.find({ city: "Nelson" }).explain("executionStats")
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'basicsDB.users',
+    parsedQuery: { city: { '$eq': 'Nelson' } },
+    indexFilterSet: false,
+    queryHash: 'DE2E7A09',
+    planCacheShapeHash: 'DE2E7A09',
+    planCacheKey: '1D4DE2C1',
+    optimizationTimeMillis: 8,
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    prunedSimilarIndexes: false,
+    winningPlan: {
+      isCached: false,
+      stage: 'FETCH',
+      inputStage: {
+        stage: 'IXSCAN',
+        keyPattern: { city: 1 },
+        indexName: 'city_1',
+        isMultiKey: false,
+        multiKeyPaths: { city: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { city: [ '["Nelson", "Nelson"]' ] }
+      }
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 2,
+    executionTimeMillis: 13,
+    totalKeysExamined: 2,
+    totalDocsExamined: 2,
+    executionStages: {
+      isCached: false,
+      stage: 'FETCH',
+      nReturned: 2,
+      executionTimeMillisEstimate: 0,
+      works: 3,
+      advanced: 2,
+      needTime: 0,
+      needYield: 0,
+      saveState: 0,
+      restoreState: 0,
+      isEOF: 1,
+      docsExamined: 2,
+      alreadyHasObj: 0,
+      inputStage: {
+        stage: 'IXSCAN',
+        nReturned: 2,
+        executionTimeMillisEstimate: 0,
+        works: 3,
+        advanced: 2,
+        needTime: 0,
+        needYield: 0,
+        saveState: 0,
+        restoreState: 0,
+        isEOF: 1,
+        keyPattern: { city: 1 },
+        indexName: 'city_1',
+        isMultiKey: false,
+        multiKeyPaths: { city: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { city: [ '["Nelson", "Nelson"]' ] },
+        keysExamined: 2,
+        seeks: 1,
+        dupsTested: 0,
+        dupsDropped: 0
+      }
+    }
+  },
+  queryShapeHash: '1C8DAF399C3C9A53DDEA4C42EF84DDCB56A742D2AEAC7BF0A6147C252AC10D95',
+  command: { find: 'users', filter: { city: 'Nelson' }, '$db': 'basicsDB' },
+  serverInfo: {
+    host: '',
+    port: ,
+    version: '8.2.11',
+    gitVersion: ''
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  ok: 1
+}
+
+
+```
+- Mongodb is now using the index:
+   - We can see this in the 'IXSCAN -> FETCH'
+   - It no longer scans the entire collection. It jumps to the index where the city == 'Nelson'
+   - It only searched exactly for 'Nelson'. Fetched and returned only 2 documents from disk.
+   - After creating an index on city, MongoDB switched from a COLLSCAN (scanning all documents) to an IXSCAN → FETCH plan. It examined only 2 index keys and 2 documents, instead of scanning the entire collection.
+
+
 
 ## Warnings when connecting to the Database
 ```
