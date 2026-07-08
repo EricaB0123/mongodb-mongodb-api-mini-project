@@ -121,6 +121,86 @@ For example, if you want to find all users whose names start with a certain lett
 - Minimal recommended index set for this collection would be to create an index on the 'name' field, as it is likely to be a common search criteria.  And the city field, as it may also be a common search criteria.  This would allow for efficient lookups based on these fields and improve query performance. However, the specific index set would depend on the specific use case and query patterns of the application. Which is what im working towards.
 
 
+### Viewing the Query Plan
+
+```
+admin> use basicsDB
+switched to db basicsDB
+basicsDB> db.users.find({ city: "Nelson" }).explain("executionStats")
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'basicsDB.users',
+    parsedQuery: { city: { '$eq': 'Nelson' } },
+    indexFilterSet: false,
+    queryHash: 'DE2E7A09',
+    planCacheShapeHash: 'DE2E7A09',
+    planCacheKey: '818C7633',
+    optimizationTimeMillis: 11,
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    prunedSimilarIndexes: false,
+    winningPlan: {
+      isCached: false,
+      stage: 'COLLSCAN',
+      filter: { city: { '$eq': 'Nelson' } },
+      direction: 'forward'
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 2,
+    executionTimeMillis: 23,
+    totalKeysExamined: 0,
+    totalDocsExamined: 6,
+    executionStages: {
+      isCached: false,
+      stage: 'COLLSCAN',
+      filter: { city: { '$eq': 'Nelson' } },
+      nReturned: 2,
+      executionTimeMillisEstimate: 0,
+      works: 7,
+      advanced: 2,
+      needTime: 4,
+      needYield: 0,
+      saveState: 0,
+      restoreState: 0,
+      isEOF: 1,
+      direction: 'forward',
+      docsExamined: 6
+    }
+  },
+  queryShapeHash: '1C8DAF399C3C9A53DDEA4C42EF84DDCB56A742D2AEAC7BF0A6147C252AC10D95',
+  command: { find: 'users', filter: { city: 'Nelson' }, '$db': 'basicsDB' },
+  serverInfo: {
+    host: '',
+    port: 27017,
+    version: '8.2.11',
+    gitVersion: ''
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  ok: 1
+}
+
+
+
+
+```
+
+
 ## Warnings when connecting to the Database
 ```
 ------
