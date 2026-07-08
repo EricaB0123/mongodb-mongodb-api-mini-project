@@ -63,6 +63,47 @@ docker compose up -d
 
 ```
 
+###### Warnings based on the Docker Setup
+```
+------
+   The server generated these startup warnings when booting
+   2026-07-07T10:45:12.546+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2026-07-07T10:45:13.201+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2026-07-07T10:45:13.201+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2026-07-07T10:45:13.201+00:00: We suggest setting the contents of sysfsFile to 0.
+   2026-07-07T10:45:13.201+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+```
+MongoDB with WiredTiger performs best on XFS.
+
+- Format the host disk/volume as XFS
+- Mount that path
+- Use it for your MongoDB volume
+- disable THP
+- set swappiness low
+- avoid swap on the MongoDB host
+
+Reason for THP Warnings:
+
+https://www.mongodb.com/docs/manual/administration/tcmalloc-performance/#std-label-enable-thp
+https://www.mongodb.com/docs/manual/tutorial/disable-transparent-huge-pages/
+
+On a Linux host, for earlier versions of MongoDb it was recommended to disble the Transparent Huge Pages, as it could hinder the mmeory performance.
+For later versions of MongoDb, TCMalloc uses a per-cpu cache to reduce the memory fragmentation.  MongoDB now performs better when THP is enabled because it reduces memory lookup overhead by treating many small memory pages as one large page.
+
+Becuase im using a windows machine and docker setup - this would use the legacy TCMalloc version which does not support the updated TCMalloc for THP.
+
+Reason for the Swapness to low Warnings:
+Set the Swappiness parameter low to avoid swapping on the MongoDB host. In linux, this controls how agressive the system swaps space. Setting to '1' means, only when necessary will it swap. 
+
+Mongodb is sensative to swapping. As this can slow down memory access, latency spikes and can freeze the database. This setting is meant to help MongoDB stay in RAM.
+
+Becuase im running MongoDB inside Docker on Windows, swappiness cannot be tuned because the container runs under WSL2. MongoDB’s recommendation to set swappiness to 1 applies only to native Linux hosts.
+
+
+
+Additionally, using XFS file system is highly recommended to avoid performance issues that may occur when using EXT4 with WiredTiger.
+
 ### Connecting to Mongo via Visual Studio 
 
 1. Install the MongoDB extension
