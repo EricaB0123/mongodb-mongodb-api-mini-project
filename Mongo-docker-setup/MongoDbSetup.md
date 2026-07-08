@@ -35,7 +35,8 @@ docker compose up -d
 
 ### Example using the MongoDB extension via VisualStudioCode
 
-<img width="972" height="917" alt="Connecting to Mongo DB in Docker" src="https://github.com/user-attachments/assets/922bf7de-2875-4824-8d24-ed8616769db7" />
+<img width="932" height="912" alt="image" src="https://github.com/user-attachments/assets/1e98a547-79ff-4f02-8e80-99da016cf8c1" />
+
 
 ### Database get setup
 I created a Database called 'BasicDB' and created a collection called 'users'.
