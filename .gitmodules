@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-[submodule "Mongo-docker-setup/src/Mongo-docker-setup/src/mongodb-implementation-private"]
-	path = Mongo-docker-setup/src/Mongo-docker-setup/src/mongodb-implementation-private
-=======
-[submodule "Mongo-docker-setup/src/mongodb-implementation-private"]
-	path = Mongo-docker-setup/src/mongodb-implementation-private
->>>>>>> 7d9c4fcaeb8219e74aba046a665d18e23b63fc11
-	url = https://github.com/EricaB0123/mongodb-implementation-private.git
