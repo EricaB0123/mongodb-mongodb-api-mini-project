@@ -86,13 +86,17 @@ Measuring performance differences
 - Screenshots of cloud collections
 - Differences between local Docker vs Atlas
 
-## Screenshots
-Screenshots include:
-Docker container running
-VS Code MongoDB extension
-Sample documents
-(Soon) API responses
-(Soon) Atlas dashboard
+## Architecture Layout  Diagrams/Documentation
+https://github.com/EricaB0123/mongodb-mongodb-api-mini-project/tree/main/Mongo-docker-setup/docs
+Which includes:
+- Docker container Setup
+- VS Code MongoDB extension
+- Sample documents
+- Overall Project 
+- (Soon) API responses
+- (Soon) Atlas dashboard
+
+
 
 #Roadmap
 [x] Docker MongoDB setup
